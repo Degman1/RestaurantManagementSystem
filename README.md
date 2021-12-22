@@ -1,15 +1,17 @@
-# RestaurantSimulator
+# RestaurantManagementSystem
 
 A JavaScript program run with NodeJS to simulate a restaurant management system using the state, observer, and fluent design patterns along with functional programming and streamlined error handling (Promises).
 
-### Simulator Flow
+### System Flow
 
-Once the simulator is initiated, stored data is loaded into the system to remember the table setup, the employees with their assignments, and the menu. The restaurant can then be openned for business and the user can create and manipulate new customer groups that can be added to an entrance wait list. Once the front desk finds an open table with enough seats, the customer is assigned to a table. Waiter objects observe the state of the customers sitting at the tables along with the prepared food that exits the kitchen and changes their internal state accordingly. The customer group can order food and drink by creating new orders that are added to the kitchen's queue of food to complete. Once the food is prepared, the corresponding waiter is notified and sends the food over to the table. Once a customer group is finished they must first pay the bill with a tip and leave the table and are removed from the system along with any outstanding orders they may have placed. Once all customers have paid and vacated their tables, the restaurant can be closed and the tips for the waiters are distributed accordingly.
+Once the system is initiated, stored data is loaded into the system to remember the table setup, the employees with their assignments, and the menu. The restaurant can then be openned for business and the user can create and manipulate new customer groups that can be added to an entrance wait list. Once the front desk finds an open table with enough seats, the customer is assigned to a table. Waiter objects observe the state of the customers sitting at the tables along with the prepared food that exits the kitchen and changes their internal state accordingly. The customer group can order food and drink by creating new orders that are added to the kitchen's queue of food to complete. Once the food is prepared, the corresponding waiter is notified and sends the food over to the table. Once a customer group is finished they must first pay the bill with a tip and leave the table and are removed from the system along with any outstanding orders they may have placed. Once all customers have paid and vacated their tables, the restaurant can be closed and the tips for the waiters are distributed accordingly.
 
 Potential Updates:
-1. Ability to remove People from the system on condition that they are in a certain state
-2. Customers are saved in the system with their information and remembered when they come back
-3. Assign waiters to tables taking table location into consideration
+1. Deal with the dillema when a customer group is larger than the table size, but can still be accomadated
+2. Ability to remove People from the system on condition that they are in a certain state
+3. Make the menu more customizable and malleable
+4. Customers are saved in the system with their information and remembered when they come back
+5. Assign waiters to tables taking table location into consideration
 
 ## Computer Science Principles Incorperated into this Project
 
@@ -25,30 +27,31 @@ Potential Updates:
    
 4. Linked Lists / Queues - use list implementation of queues to represent customers waiting to be seated and food orders waiting to be processed by the kitchen
 5. Error Handling - implement JavaScript Promises to handle successes and failures while fulfilling various operations
-6. Unit Test and Property Tests - incorperate both testing ideologies to debug and garuntee the correctness of the program
+6. Unit Test and Property Tests - incorporate both testing ideologies to debug and guarantee the correctness of the program
 
 ## Objects
 
-The simulator keeps track of the following aspects of a real-life restaurant: customers, the front desk, tables, waiters, orders, and the kitchen
+The system keeps track of the following aspects of a real-life restaurant: customers, the host, tables, employees, orders, and the kitchen
 
-### RestaurantSimulator
+### RestaurantManagementSystem
 
-The main simulator that keeps track of all the aspects of the restaurant and the methods to manipulate those aspects
+The main system that keeps track of all the aspects of the restaurant and the methods to manipulate those aspects
 
 Properties:
-- `isOpen: boolean`
-- `frontDesk: FrontDesk`
-- `kitchen: Kitchen`
-- `tables: Table[]`
-- `menu: Food[]`
-- `waiters: { waiter: Waiter, assignedTables: number[] }` - 
+- `#isOpen: boolean`
+- `#host: Host`
+- `#kitchen: Kitchen`
+- `#tables: Table[]`
+- `#menu: Food[]`
+- `#waiters: Waiter[]`
+- `#timeSheet: TimeSheet`
 
 Methods:
 - `open(): this` - opens the restaurant
 - `close(): Promise` - closes the restaurant and returns Success if all customers are vacated, otherwise returns Failure
 - `isOpen(): boolean` - returns true if the restaurant is open, false otherwise
 - `createFood(name: String, price: number): this` - adds a food to the menu
-- `createWaiter(name: String): this` - create a new waiter
+- `createWaiter(name: String): this` - create a new waiter and slot for them in the timesheet
 - `createTable(tableID: number): this` - create a new table with a corresponding id
 - `assignWaiter(name: String, tableID: number): this` - assign a waiter to a given table, takes the table over if another waiter already is working the table
 - `addGroupToWaitlist(name: String, size: number): this` - creates a customer group and adds it to the front desk's waitlist to be seated when a table opens up -- once seated, if the table has no waiter, assign the waiter with the least number of tables or print a warning if not waiters exist yet
@@ -99,7 +102,7 @@ Methods:
 Properties:
 - (MUTATED) `state: FiniteStateMachine` - keeps track of the customer states and state transitions: <"clockedOut", "unassigned", "assigned-inactive", "assigned-serving">
 
-Methods: ...
+Methods:...
 
 ### Cook
 
@@ -123,7 +126,10 @@ Methods: ...
 
 Represents a table to which a group of customers and a waiter are assigned
 
-Data Types:
+Properties:
+- `size: number` - the largest number of people that can fit at the table
+- `customer: Customer | undefined` - the customer group assigned to the table, undefined if no assignment
+- `waiter: Waiter | undefined` - the waiter assigned to the table, undefined if no assignment
 
 Methods: ...
 
