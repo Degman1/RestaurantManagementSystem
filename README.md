@@ -1,6 +1,6 @@
 # RestaurantManagementSystem
 
-A JavaScript program run with NodeJS to simulate a restaurant management system using the state, observer, and fluent design patterns along with functional programming and streamlined error handling.
+A JavaScript program [run with NodeJS, tested with JEST, managed with npm] to simulate a restaurant management system using the state, observer, and fluent design patterns along with functional programming and streamlined error handling (Promises).
 
 ## System Flow
 
@@ -28,7 +28,7 @@ Potential Updates:
    
 4. Linked Lists / Queues - use list implementation of queues to represent customers waiting to be seated and food orders waiting to be processed by the kitchen
 5. Error Handling - implement JavaScript Promises to handle successes and failures while fulfilling various operations
-6. Unit Test and Property Tests - incorporate both testing ideologies to debug and guarantee the correctness of the program
+6. Unit Test and Property Tests - incorporate both testing ideologies with JEST to debug and guarantee the correctness of the program
 
 ## Objects
 
