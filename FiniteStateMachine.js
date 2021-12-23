@@ -132,7 +132,7 @@ class FiniteStateMachine {
     // createMemento(): Memento
     this.createMemento = () => {
       let mem = new Memento();
-      mem.storeState(state.getName());
+      if (state !== undefined) { mem.storeState(state.getName()); }
       return mem;
     }
 
