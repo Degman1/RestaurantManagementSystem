@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Degman1/RestaurantManagementSystem#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
     "jest": "^27.4.5"
   }
 }
