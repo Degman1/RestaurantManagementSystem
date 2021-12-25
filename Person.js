@@ -3,6 +3,7 @@ const Logger = require('./Logger');
 class Person {
   #name;
   #email;
+  description = "[Person: " + this.getName() + ", " + this.getEmail() + "]";
 
   constructor(name, email) {  // when instantiating, must check for name and email validity first, otherwise it will be kept undefined
     const myReject = err => Logger.printError(err.message);   // TODO: if program is setup with a GUI, should make this compatible

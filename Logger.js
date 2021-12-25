@@ -1,6 +1,6 @@
 class Logger {
   static #debug = true;
-  static #error = false;
+  static #error = false;  // keeps track of if an error was encountered
 
   static encounteredError() {
     return this.#error;
