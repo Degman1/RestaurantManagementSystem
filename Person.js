@@ -1,12 +1,22 @@
+const Logger = require('./Logger');
+
 class Person {
   #name;
   #email;
 
   constructor(name, email) {  // when instantiating, must check for name and email validity first
-    if (!Person.validateEmail(email)) { console.log("WARNING: [" + name + ", " +  email + "] invalid name"); }
-    if (!Person.validateName(name)) { console.log("WARNING: [" + name + ", " +  email + "] invalid email") }
+    /*Person.validateName(name);
+    Person.validateEmail(email);
     this.#name = name;
-    this.#email = email;
+    this.#email = email;*/
+    const myReject = err => Logger.printWarning(err.message);   // TODO: if program is setup with a GUI, should make this compatible
+    this.setName(name).catch(myReject);
+    this.setEmail(email).catch(myReject);
+  }
+
+  // arePropertiesValidated(): boolean
+  arePropertiesValidated() {
+    return validateName(name) && validateEmail(email);
   }
 
   // getName(): String
@@ -16,16 +26,22 @@ class Person {
 
   // #validateName(name: String): Boolean
   static validateName(name) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(name);
+    const res = /^[A-Za-z\s]*$/.test(name);
+    //if (!res) { Logger.printWarning("\"" + name + "\" is invalid for the name property of a Person"); }
+    return res;
   }
 
   // setName(name: String): Promise
   setName(name) {
-    if (Person.validateName(email)) {
-      this.#name = name;
-      return new Promise();
-    }
-    return new Promise();
+    let ref = this;
+    return new Promise((myResolve, myReject) => {
+      if (Person.validateName(name)) { 
+        ref.#name = name;
+        myResolve(true);
+      } else {
+        myReject(Error("\"" + name + "\" is invalid for the name property of a Person"));
+      }
+    });
   }
 
   // getEmail(): String
@@ -34,17 +50,23 @@ class Person {
   }
 
   // #validateEmail(mail: String): Boolean
-  static validateEmail(mail) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail);
+  static validateEmail(email) {
+    const res = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    //if (!res) { Logger.printWarning("\"" + email + "\" is invalid for the email property of a Person"); }
+    return res;
   }
 
   // setEmail(email: String): Promise
   setEmail(email) {
-    if (Person.validateEmail(email)) {
-      this.#email = email;
-      return new Promise();
-    }
-    return new Promise();
+    let ref = this;
+    return new Promise((myResolve, myReject) => {
+      if (Person.validateEmail(email)) { 
+        ref.#email = email;
+        myResolve(true);
+      } else {
+        myReject(Error("\"" + email + "\" is invalid for the name property of a Person"));
+      }
+    });
   }
 }
 
