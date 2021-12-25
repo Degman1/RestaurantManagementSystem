@@ -4,12 +4,8 @@ class Person {
   #name;
   #email;
 
-  constructor(name, email) {  // when instantiating, must check for name and email validity first
-    /*Person.validateName(name);
-    Person.validateEmail(email);
-    this.#name = name;
-    this.#email = email;*/
-    const myReject = err => Logger.printWarning(err.message);   // TODO: if program is setup with a GUI, should make this compatible
+  constructor(name, email) {  // when instantiating, must check for name and email validity first, otherwise it will be kept undefined
+    const myReject = err => Logger.printError(err.message);   // TODO: if program is setup with a GUI, should make this compatible
     this.setName(name).catch(myReject);
     this.setEmail(email).catch(myReject);
   }
@@ -19,7 +15,7 @@ class Person {
     return validateName(name) && validateEmail(email);
   }
 
-  // getName(): String
+  // getName(): String | undefined
   getName() {
     return this.#name;
   }
@@ -44,7 +40,7 @@ class Person {
     });
   }
 
-  // getEmail(): String
+  // getEmail(): String | undefined
   getEmail() {
     return this.#email;
   }

@@ -56,6 +56,12 @@ test("setName invalid name", () => {
   expect(p.getName()).toBe("david");
 });
 
+test("Person constructor invalid inputs", () => {
+  const p = new Person("david-", "ab*c@gmail.com");
+  expect(p.getName()).toBeFalsy();
+  expect(p.getEmail()).toBeFalsy();
+});
+
 test("setEmail valid email", () => {
   const p = new Person("david", "abc@gmail.com");
   p.setEmail("efg@verizon.net").catch(err => {});
