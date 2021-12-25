@@ -1,3 +1,7 @@
+.DS_Store
+
+# The following is to ignore the JEST testing setup and settings
 node_modules/
 package-lock.json
-.DS_Store
+babel.config.js
+package.json
