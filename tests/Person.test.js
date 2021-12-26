@@ -1,4 +1,4 @@
-const Person = require('./Person');
+const Person = require('../source/Person');
 
 test("validateName definition", () => {
   Person.validateName("David");

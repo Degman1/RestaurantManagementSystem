@@ -1,5 +1,5 @@
-const Customer = require('./Customer');
-const Logger = require('./Logger');
+const Customer = require('../source/Customer');
+const Logger = require('../source/Logger');
 
 // This test is expected to fail to prove that teh private variables cannot be accessed externally
 /*test("cannot directly change state", () => {

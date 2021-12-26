@@ -1,4 +1,4 @@
-const Logger = require('./Logger');
+const Logger = require('../source/Logger');
 
 let output = "";
 Logger.setLogOutput(str => { output = str; });

@@ -1,4 +1,4 @@
-const FSA = require('./FiniteStateMachine');
+const FSA = require('../source/FiniteStateMachine');
 
 test("createState definition", () => {
   let myMachine = new FSA()
