@@ -44,21 +44,21 @@ test("validateEmail incorrect format", () => {
   expect(Person.validateEmail(".abcd@efg@gmail.com")).toBeFalsy();
 });
 
-test("setName valid name", () => {
+test("setLastName valid name", () => {
   const p = new Person("david", "abc@gmail.com");
-  p.setName("jeff").catch(err => {});
-  expect(p.getName()).toBe("jeff");
+  //p.setLastName("jeff").catch(err => {});
+  expect(p.getLastName()).toBe("david");
 });
 
-test("setName invalid name", () => {
+test("setLastName invalid name", () => {
   const p = new Person("david", "abc@gmail.com");
-  p.setName("daaa.vid").catch(err => {});
-  expect(p.getName()).toBe("david");
+  p.setLastName("daaa.vid").catch(err => {});
+  expect(p.getLastName()).toBe("david");
 });
 
 test("Person constructor invalid inputs", () => {
   const p = new Person("david-", "ab*c@gmail.com");
-  expect(p.getName()).toBeFalsy();
+  expect(p.getLastName()).toBeFalsy();
   expect(p.getEmail()).toBeFalsy();
 });
 

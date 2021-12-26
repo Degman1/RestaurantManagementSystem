@@ -5,27 +5,29 @@ const Logger = require('./Logger');
 class Customer extends Person {
   #tableID;
   #state;
-  #balance = 0;
-  #paymentMethod = undefined;   // TODO create a payment plug
+  #balance;
+  #paymentMethod = undefined;
 
-  constructor(name, email) {
-    super(name, email);
-    this.description = "[Customer: " + this.getName() + ", " + this.getEmail() + "]";
+  constructor(lastName, email) {
+    super(lastName, email);
+    this.description = "[Customer: " + this.getLastName() + ", " + this.getEmail() + "]";
     this.#tableID = undefined;
+    this.#balance = 0;
+    this.#paymentMethod = undefined;   // TODO create a payment plug
     this.#state = new FiniteStateMachine()
       .createState("inactive", [{wait: "waitlisted"}, {seat: "seated"}])
       .createState("waitlisted", [{remove: "inactive"}, {seat: "seated"}])
       .createState("seated", [{pay: "inactive"}]);
   }
 
-  // getTableID(): number
-  getTableID() {
-    return this.#tableID;
-  }
-
   // showState(): String | undefined
   showState() {
     return this.#state.showState();
+  }
+
+  // getTableID(): number
+  getTableID() {
+    return this.#tableID;
   }
 
   // addToWaitlist(): this
@@ -38,7 +40,6 @@ class Customer extends Person {
     } else if (this.showState() === "seated") {
       Logger.printDebug(this.description + " is already seated");
     }
-
     return this;
   }
 

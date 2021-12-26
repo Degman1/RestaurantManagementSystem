@@ -70,7 +70,7 @@ Properties:
 
 Methods:
 - `getName(): String` - gets the name of the person
-- `setName(name: String): Promise` - set the name of the customer, returns Success if valid name, Failure otherwise
+- `setLastName(name: String): Promise` - set the name of the customer, returns Success if valid name, Failure otherwise
 - `getEmail(): String` - gets the email of the person
 - `setEmail(email: String): Promise` - set the email of the customer, returns Success if valid email, Failure otherwise
 
