@@ -43,8 +43,8 @@ class FiniteStateMachine {
         this.nextState = (e) => {
           let potentialNextStates = this.nextStates(e);
 
-          // if multiple next states exist, return a random one of them, if none exist return undefined
-          return potentialNextStates.length === 0 ? undefined : potentialNextStates[randomInt(0, potentialNextStates.length)];
+          // if multiple next states exist, return a random one of them, if none exist return this state
+          return potentialNextStates.length === 0 ? this : potentialNextStates[randomInt(0, potentialNextStates.length)];
         }
 
         this.clearTransitions = () => transitions = [];

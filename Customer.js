@@ -5,7 +5,7 @@ const Logger = require('./Logger');
 class Customer extends Person {
   #tableID;
   #state;
-  #billAmount = 0;
+  #balance = 0;
   #paymentMethod = undefined;   // TODO create a payment plug
 
   constructor(name, email) {
@@ -18,24 +18,31 @@ class Customer extends Person {
       .createState("seated", [{pay: "inactive"}]);
   }
 
+  // getTableID(): number
+  getTableID() {
+    return this.#tableID;
+  }
+
   // showState(): String | undefined
   showState() {
     return this.#state.showState();
   }
 
-  // addToWaitlist(): void
+  // addToWaitlist(): this
   addToWaitlist() {
     if (this.showState() === "inactive") {
       this.#state.nextState("wait");
       Logger.printDebug(this.description + " added to the waitlist");
-    } else if (this.showState() === "waitlisted") {
+    } else if (this.showState() === "waitlisted") {                   // TODO remove debug statements?
       Logger.printDebug(this.description + " is already on the waitlist");
     } else if (this.showState() === "seated") {
       Logger.printDebug(this.description + " is already seated");
     }
+
+    return this;
   }
 
-  // removeFromWaitlist(): void
+  // removeFromWaitlist(): this
   removeFromWaitlist() {
     if (this.showState() === "inactive") {
       Logger.printDebug(this.description + " is not on the waitlist");
@@ -45,34 +52,37 @@ class Customer extends Person {
     } else if (this.showState() === "seated") {
       Logger.printDebug(this.description + " is not on the waitlist");
     }
+
+    return this;
   }
 
-  // seat(tableID: number): void
+  // seat(tableID: number): this
   seat(tableID) {
-    if (this.showState() === "seated") {
-      Logger.printDebug(this.description + " is already seated");
-    } else {
-      this.#state.nextState("seat");
-      this.#tableID = tableID;
-      Logger.printDebug(this.description + " seated at table " + tableID);
-    }
+    this.#state.nextState("seat");
+    this.#tableID = tableID;
+    Logger.printDebug(this.description + " seated at table " + tableID);
+    return this;
   }
 
-  // pay(): void
+  // pay(): this
   pay() {
-    if (this.showState() === "seated") {
-      this.#state.nextState("pay");
-      this.#tableID = undefined;
-      this.#billAmount = 0;       // TODO: change depending on how the system handles payments
-      Logger.printDebug(this.description + " successfully payed");
-    } else {
-      Logger.printDebug(this.description + " does not yet owe money");
-    }
+    this.#state.nextState("pay");
+    this.#tableID = undefined;
+    this.#balance = 0;       // TODO: change depending on how the system handles payments
+    Logger.printDebug(this.description + " successfully payed");
+    return this;
   }
 
-  // addToBill(amount: number): void
-  addToBill(amount) {
-    this.#billAmount += amount;
+  // addToBalance(amount: number): this
+  // amount in dollars
+  addToBalance(amount) {
+    this.#balance += amount;
+    return this;
+  }
+
+  // getBalance(): number
+  getBalance() {
+    return this.#balance;
   }
 }
 

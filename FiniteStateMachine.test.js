@@ -135,7 +135,7 @@ test("nextState call to a non-existant state", () => {
       .nextState("temp")
       .nextState("mode");
 
-  expect(myMachine.showState()).toBeUndefined();
+  expect(myMachine.showState()).toBe("normal, medium");
 });
 
 test("overwrite state", () => {

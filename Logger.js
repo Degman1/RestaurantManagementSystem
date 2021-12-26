@@ -1,6 +1,11 @@
 class Logger {
-  static #debug = true;
+  static #debug = false;
   static #error = false;  // keeps track of if an error was encountered
+  static #log = console.log;
+
+  static setLogOutput(log) {
+    this.#log = log;
+  }
 
   static encounteredError() {
     return this.#error;
@@ -24,18 +29,18 @@ class Logger {
 
   static printError(message) {
     this.#error = true;
-    console.log("ERROR: " + message);
+    this.#log("ERROR: " + message);
   }
 
   // printWarning(message: String): void
   static printWarning(message) {
-    console.log("WARNING: " + message);
+    this.#log("WARNING: " + message);
   }
   
   // printDebug(message: String): void
   static printDebug(message) {
-    if (debug) {
-      console.log("DEBUG: " + message);
+    if (this.#debug) {
+      this.#log("DEBUG: " + message);
     }
   }
 }
