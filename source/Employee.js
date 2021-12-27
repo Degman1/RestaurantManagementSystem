@@ -20,6 +20,12 @@ class Employee extends Person {
 
   // arePropertiesValidated(): boolean
   arePropertiesValidated() {
-    return super.validateName() && validateName(this.#firstName);
+    return super.validateName() && validateName(this.#firstName) && validateUsername(this.#username) && validatePassword(this.#password);
+  }
+
+  // Do i need to restate this?
+  // showState(): String | undefined
+  showState() {
+    return this.#state.showState();
   }
 }

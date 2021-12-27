@@ -26,7 +26,7 @@ class Person {
   }
 
   // PREFERABLE, BUT NOT YET DOABLE:
-  // this is an ideal helper method to validating + setting properties, but DOESN'T WORK WITH PRIVATE VARIABLES
+  // this is an ideal helper method for validating + setting properties, but DOESN'T WORK WITH PRIVATE VARIABLES
   // the statement ref[propertyName] only works with public variables
   /*
   // setProperty(propertyName: String, validate: (String) => Boolean, newValue: Any)
@@ -59,7 +59,7 @@ class Person {
     let ref = this;
     return new Promise((myResolve, myReject) => {
       if (Person.validateName(lastName)) {
-        ref.#lastName = lastName;
+        ref.#lastName = lastName;       // referencing a private property from a closure outside the class is okay as long as the statement is declared in the class
         myResolve(true);
       } else {
         myReject(Error("\"" + lastName + "\" is invalid for the lastName property for a Person object"));

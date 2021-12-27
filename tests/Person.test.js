@@ -46,8 +46,9 @@ test("validateEmail incorrect format", () => {
 
 test("setLastName valid name", () => {
   const p = new Person("david", "abc@gmail.com");
-  //p.setLastName("jeff").catch(err => {});
   expect(p.getLastName()).toBe("david");
+  p.setLastName("jeff").then(x => { expect(x).toBeTruthy(); });
+  expect(p.getLastName()).toBe("jeff");
 });
 
 test("setLastName invalid name", () => {
