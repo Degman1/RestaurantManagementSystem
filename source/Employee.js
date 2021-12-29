@@ -1,18 +1,17 @@
 const Person = require('./Person');
 const FiniteStateMachine = require('./FiniteStateMachine');
 const Logger = require('./Logger');
+const Validate = require('./Validate');
 
 class Employee extends Person {
-  #username;    // username and password to clock in and out of the time sheet
-  #password;
   firstName;
+  password;    // password to clock in and out of the timesheet
 
-  constructor(firstName, lastName, email, username, password) {
+  constructor(firstName, lastName, email, password) {
     super(lastName, email);
-    this.type = this.constructor.name;
-    this.firstName = firstName;
-    this.#username = username;
-    this.#password = password;
+    const myReject = err => Logger.printError(err.message, this.description());   // TODO: if program is setup with a GUI, should make this compatible
+    this.setFirstName(firstName).catch(myReject);
+    this.setPassword(password).catch(myReject);
     this.state = new FiniteStateMachine()
       .createState("clockedOut", [{clockIn: "clockedIn"}])
       .createState("clockedIn", [{clockOut: "clockedOut"}]);
@@ -20,6 +19,28 @@ class Employee extends Person {
 
   // arePropertiesValidated(): boolean
   arePropertiesValidated() {
-    return super.arePropertiesValidated() && validateName(this.firstName) && validateUsername(this.#username) && validatePassword(this.#password);
+    return super.arePropertiesValidated() && Validate.validateName(this.getFirstName()) && Validate.validatePassword(this.getPassword());
+  }
+
+  // getFirstName(): String
+  getFirstName() {
+    return this.firstName;
+  }
+
+  // setFirstName(firstName: String): Promise
+  setFirstName(firstName) {
+    return this.validateAndSetProperty("firstName", Validate.validateName, firstName, "must contain only letters, spaces, and dashes");
+  }
+
+  // getPassword(): String
+  getPassword() {
+    return this.password;
+  }
+
+  // setPassword(password: String): Promise
+  setPassword(password) {
+    return this.validateAndSetProperty("password", Validate.validatePassword, password, "must be a number");
   }
 }
+
+module.exports = Employee;

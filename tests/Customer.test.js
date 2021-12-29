@@ -13,7 +13,7 @@ test("initialization", () => {
 
 test("description", () => {
   const c = new Customer("david", "abc@gmail.com");
-  expect(c.description()).toBe("[Customer: david, abc@gmail.com]");
+  expect(c.description()).toBe("[Customer: david]");
 });
 
 test("state starts @ inactive", () => {

@@ -1,5 +1,6 @@
 const Logger = require('./Logger');
 const FiniteStateMachine = require('./FiniteStateMachine');
+const Validate = require('./Validate');
 
 // ABSTRACT SUPERCLASS - can be instantiated, but not meant to be; only meant to be a template for objects classified as people
 class Person {
@@ -16,7 +17,7 @@ class Person {
 
   // description(): String
   description() {
-    return "[" + this.constructor.name + ": " + this.getLastName() + ", " + this.getEmail() + "]";
+    return "[" + this.constructor.name + ": " + this.getLastName() + "]";
   }
 
   // showState(): String | undefined
@@ -24,20 +25,20 @@ class Person {
     return this.state.showState();
   }
 
-  // arePropertiesValidated(): boolean
+  // arePropertiesValidated(): Boolean
   arePropertiesValidated() {
-    return validateName(this.lastName) && validateEmail(this.email);
+    return Validate.validateName(this.getLastName()) && Validate.validateEmail(this.getEmail());
   }
   
   // validateAndSetProperty(propertyName: String, validate: (String) => Boolean, newValue: Any)
-  validateAndSetProperty(propertyName, validate, newValue) {
+  validateAndSetProperty(propertyName, validate, newValue, additionalErrorMessage = "") {
     let ref = this;
     return new Promise((myResolve, myReject) => {
       if (validate(newValue)) {
         ref[propertyName] = newValue;
         myResolve(true);
       } else {
-        myReject(Error("\"" + newValue + "\" is invalid for the property " + propertyName + " for Person object"));
+        myReject(Error("\"" + newValue + "\" is invalid for the property " + propertyName + " for Person object" + (additionalErrorMessage === "" ? additionalErrorMessage : "...\n..." + additionalErrorMessage)));
       }
     });
   }
@@ -47,14 +48,9 @@ class Person {
     return this.lastName;
   }
 
-  // #validateName(name: String): Boolean
-  static validateName(name) {
-    return /^[A-Za-z\s]*$/.test(name);
-  }
-
   // setlastName(lastName: String): Promise
   setLastName(lastName) {
-    return this.validateAndSetProperty("lastName", Person.validateName, lastName);
+    return this.validateAndSetProperty("lastName", Validate.validateName, lastName, "must contain only letters, spaces, and dashes");
   }
 
   // getEmail(): String | undefined
@@ -62,14 +58,9 @@ class Person {
     return this.email;
   }
 
-  // #validateEmail(mail: String): Boolean
-  static validateEmail(email) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
-  }
-
   // setEmail(email: String): Promise
   setEmail(email) {
-    return this.validateAndSetProperty("email", Person.validateEmail, email);
+    return this.validateAndSetProperty("email", Validate.validateEmail, email);
   }
 }
 
