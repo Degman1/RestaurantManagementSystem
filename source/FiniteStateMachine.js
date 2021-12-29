@@ -145,4 +145,4 @@ class FiniteStateMachine {
   }
 }
 
-module.exports = FiniteStateMachine
+module.exports = FiniteStateMachine;

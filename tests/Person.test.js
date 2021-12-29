@@ -74,3 +74,8 @@ test("setEmail invalid email", () => {
   p.setEmail("efg@verizon$net").catch(err => {});
   expect(p.getEmail()).toBe("abc@gmail.com");
 });
+
+test("description", () => {
+  const c = new Person("david", "abc@gmail.com");
+  expect(c.description()).toBe("[Person: david, abc@gmail.com]");
+});

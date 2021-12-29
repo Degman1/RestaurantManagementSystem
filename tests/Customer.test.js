@@ -11,6 +11,11 @@ test("initialization", () => {
   const c = new Customer("david", "abc@gmail.com");
 });
 
+test("description", () => {
+  const c = new Customer("david", "abc@gmail.com");
+  expect(c.description()).toBe("[Customer: david, abc@gmail.com]");
+});
+
 test("state starts @ inactive", () => {
   const c = new Customer("david", "abc@gmail.com");
   expect(c.showState()).toBe("inactive");

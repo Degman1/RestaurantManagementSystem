@@ -27,20 +27,20 @@ class Logger {
     this.#debug = false;
   }
 
-  static printError(message) {
+  static printError(message, description = "") {
     this.#error = true;
-    this.#log("ERROR: " + message);
+    this.#log("ERROR: " + (description !== "" ? description + " - " : description) + message);
   }
 
   // printWarning(message: String): void
-  static printWarning(message) {
-    this.#log("WARNING: " + message);
+  static printWarning(message, description = "") {
+    this.#log("WARNING: " + (description !== "" ? description + " - " : description) + message);
   }
   
   // printDebug(message: String): void
-  static printDebug(message) {
+  static printDebug(message, description = "") {
     if (this.#debug) {
-      this.#log("DEBUG: " + message);
+      this.#log("DEBUG: " + (description !== "" ? description + " - " : description) + message);
     }
   }
 }
