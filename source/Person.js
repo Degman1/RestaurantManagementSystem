@@ -32,7 +32,7 @@ class Person {
   
   // validateAndSetProperty(propertyName: String, validate: (String) => Boolean, newValue: Any)
   validateAndSetProperty(propertyName, validate, newValue, additionalErrorMessage = "") {
-    let ref = this;
+    const ref = this;
     return new Promise((myResolve, myReject) => {
       if (validate(newValue)) {
         ref[propertyName] = newValue;
