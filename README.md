@@ -65,8 +65,8 @@ Methods:
 ### Person
 
 Properties:
-- `#name: String` - the name of the person
-- `#email: String` - the email of the person
+- `name: String` - the name of the person
+- `email: String` - the email of the person
 
 Methods:
 - `getName(): String` - gets the name of the person
@@ -82,20 +82,17 @@ Properties:
 - `tableID: number | undefined` - the id of the table to which the customer is assigned, undefined if no table
 - `state: FiniteStateMachine` - keeps track of the customer states and state transitions: <"waitlisted", "seated", "inactive">
 
-Methods: ...
+Methods:...
 
 ### Employee
 
 *Inherits from Person*
 
 Properties:
-- `#username: String` - the username for an employee to clock into and out of work
-- `#password: String` - the password for an employee to clock into and out of work
+- `password: String` - the password for an employee to clock into and out of work
 - `state: FiniteStateMachine` - keeps track of the customer states and state transitions: <"clockedIn", "clockedOut">
 
 Methods:
-- `getUsername(): String` - gets the username of the person
-- `setUsername(username: String): Promise` - set the username of the employee, returns Success if valid name, Failure otherwise
 - `getPassword(): String` - gets the password of the person
 - `setPassword(password: String): Promise` - set the password of the employee, returns Success if valid email, Failure otherwise
 
@@ -139,7 +136,7 @@ Methods: ...
 ### Kitchen
 
 Properties:
-- `#ordersToFulfill: Queue`
+- `ordersToFulfill: Queue`
 
 Methods:
 - `nextOrderPrepared(): Promise` - dequeue and return Success of the order, otherwise Failure
