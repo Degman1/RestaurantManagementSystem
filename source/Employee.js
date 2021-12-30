@@ -41,6 +41,24 @@ class Employee extends Person {
   setPassword(password) {
     return this.validateAndSetProperty("password", Validate.validatePassword, password, "must be a number");
   }
+
+
+  // showState(): String
+  showState() {
+    return this.state.showState();
+  }
+  
+  // clockIn(): this
+  clockIn() {
+    this.state.nextState("clockIn");
+    return this;
+  }
+
+  // clockOut(): this
+  clockOut() {
+    this.state.nextState("clockOut");
+    return this;
+  }
 }
 
 module.exports = Employee;

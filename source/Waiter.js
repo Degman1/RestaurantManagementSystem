@@ -13,22 +13,10 @@ class Waiter extends Employee {
     this.tableID = undefined;
   }
 
-  // showState(): String
-  showState() {
-    return this.state.showState();
-  }
-  
-  // clockIn(): this
-  clockIn() {
-    this.state.nextState("clockIn");
-    return this;
-  }
-
   // clockOut(): this
   clockOut() {
     tableID = undefined;
-    this.state.nextState("clockOut");
-    return this;
+    return super.clockOut();
   }
 
   // assignTable(tableID: number): this
