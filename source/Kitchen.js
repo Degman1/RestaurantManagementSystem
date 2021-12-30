@@ -30,3 +30,5 @@ class Kitchen {
     return this.ordersToFulfill.length;
   }
 }
+
+module.exports = Kitchen;

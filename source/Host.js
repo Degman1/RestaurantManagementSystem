@@ -34,3 +34,5 @@ class Host extends Employee {
     return this.waitlist.findIndex(c => c.getLastName() === lastName);
   }
 }
+
+module.exports = Host;
