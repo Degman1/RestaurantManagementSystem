@@ -1,0 +1,158 @@
+[
+  {
+    "name": "Shrimp Cocktail",
+    "price": 16,
+    "section": "Appetizer",
+    "allergens": ["shellfish"],
+    "spicy": false
+  },
+  {
+    "name": "Spicy Lobster",
+    "price": 19,
+    "section": "Appetizer",
+    "allergens": ["shellfish"],
+    "spicy": true
+  },
+  {
+    "name": "Baked Escargot",
+    "price": 16,
+    "section": "Appetizer",
+    "allergens": ["shellfish"],
+    "spicy": false
+  },
+  {
+    "name": "Seared Ahi Tuna",
+    "price": 17,
+    "section": "Appetizer",
+    "allergens": ["fish"],
+    "spicy": false
+  },
+  {
+    "name": "Prosciutto Wrapped Mozarella",
+    "price": 14,
+    "section": "Appetizer",
+    "allergens": ["dairy"],
+    "spicy": false
+  },
+  {
+    "name": "Filet Mignon",
+    "price": 38,
+    "section": "Steak Cuts",
+    "allergens": ["milk", "raw"],
+    "sizes": [ { "8 ounce": 0 }, { "12 ounce": 11 } ]
+  },
+  {
+    "name": "Rib Eye Steak",
+    "price": 39,
+    "section": "Steak Cuts",
+    "allergens": ["milk", "raw"],
+    "sizes": [ { "18 ounce": 0 } ],
+    "spicy": false
+  },
+  {
+    "name": "Porterhouse for Two",
+    "price": 40,
+    "section": "Steak Cuts",
+    "allergens": ["raw"]
+  },
+  {
+    "name": "Classic New York Sirloin",
+    "description": "With jumbo gulf shrimp, garlic, white wine, and lemon",
+    "price": 36,
+    "section": "Steak Cuts",
+    "allergens": ["raw"],
+    "spicy": false
+  },
+  {
+    "name": "Stuffed Lobster Tail",
+    "price": 40,
+    "section": "Seafood",
+    "allergens": ["shellfish"],
+    "spicy": true,
+    "description": "With lump crabmeat topped with imperial sauce"
+  },
+  {
+    "name": "Maryland Crab Cake Dinner",
+    "price": 16,
+    "allergens": ["shellfish"],
+    "section": "Seafood",
+    "spicy": false,
+    "description": "Two thick, broiled, Maryland style crab cakes with coleslaw and red remoulade sauce"
+  },
+  {
+    "name": "Cod with Breadcrumbs",
+    "price": 25,
+    "allergens": ["fish", "milk", "raw"],
+    "section": "Seafood"
+  },
+  {
+    "name": "Salmon",
+    "price": 40,
+    "allergens": ["fish", "rwa"],
+    "section": "Seafood",
+    "description": "Brown sugar glaze"
+  },
+  {
+    "name": "Spinach Salad",
+    "price": 9.50,
+    "section": "Salads and Soups",
+    "allergens": ["nuts", "milk"],
+    "spicy": false,
+    "description": "Apples, goat cheese, and apple cider dressing"
+  },
+  {
+    "name": "No Man's Land"
+  },
+  {
+    "name": "Caprese Salad",
+    "price": 7.50,
+    "section": "Salads and Soups",
+    "allergens": ["nuts", "milk"],
+    "spicy": false,
+    "description": "Ripe tomato with fresh mozzarella and basil"
+  },
+  {
+    "name": "French Onion Soup",
+    "price": 5,
+    "section": "Salads and Soups",
+    "spicy": false
+  },
+  {
+    "name": "Lobster Bisque",
+    "price": 8,
+    "section": "Salads and Soups",
+    "allergens": ["shellfish"]
+  },
+  {
+    "name": "Green Beens",
+    "price": 4,
+    "section": "Sides",
+    "allergens": [],
+    "spicy": false,
+    "description": ""
+  },
+  {
+    "name": "Cole Slaw",
+    "price": 3,
+    "section": "Sides",
+    "spicy": true
+  },
+  {
+    "name": "Baby Brussel Sprouts",
+    "price": 4,
+    "section": "Sides"
+  },
+  {
+    "name": "Mashed Potatos",
+    "price": 4,
+    "section": "Sides",
+    "allergens": ["milk"],
+    "description": "With a creamy sauce and bacon bits on top"
+  },
+  {
+    "name": "Hand-Cut Fries",
+    "price": 3,
+    "section": "Sides",
+    "allergens": []
+  }
+]

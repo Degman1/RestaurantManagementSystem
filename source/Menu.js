@@ -1,13 +1,18 @@
 /* 
 This class filters json data with higher order functions and the fluent design pattern.
 
-The menu items are provided in the following JSON format:
+The menu items are provided in the following JSON format. None of the properies are garunteed to be there
   [
     {
-      name: string,
-      price: number,
-      allergens: string[]
-      spicy: boolean
+      "name": String,
+      "price": number,
+      "section": String,                // the section of the menu
+      "allergens": String[],
+      "spicy": boolean,
+      "sizes": {
+        [key: String]: number           // the number indicates the addition the size choice makes to the price
+      }
+      "description": String
     }, ...
   ]
 */
@@ -32,12 +37,11 @@ class Menu {
   //            satisfiesRequirements: (any) => boolean - a function that indicates whether a given food satisfies the given requirements
   // RETURNS: Menu - the new Menu object with data including only foods that had the propertyName present and a satisfactory corresponding value
   // filterMenuByProperty builds off of filterMenu to generalize menu filtering by a given property requirement
-  filterRestaurantsByProperty(propertyName, satisfiesRequirements) {
-    return this.filterRestaurants(r => {
-      const property = lib220.getProperty(r, propertyName);
-      return property.found && satisfiesRequirements(property.value);
-    });
+  filterMenuByProperty(propertyName, satisfiesRequirements) {
+    return this.filterMenu(r => r.hasOwnProperty(propertyName) && satisfiesRequirements(r[propertyName]) );
   }
+
+
 }
 
 module.exports = Menu;
