@@ -41,7 +41,26 @@ class Menu {
     return this.filterMenu(r => r.hasOwnProperty(propertyName) && satisfiesRequirements(r[propertyName]) );
   }
 
+  // filterPriceLeq(amount: number): Menu
+  filterPriceLeq(amount) {
+    return this.filterMenuByProperty("price", price => price <= amount);
+  }
 
+  // filterPriceGeq(amount: number): Menu
+  filterPriceGeq(amount) {
+    return this.filterMenuByProperty("price", price => price >= amount);
+  }
+
+  // filterSection(s: String): Menu
+  filterSection(s) {
+    return this.filterMenuByProperty("section", section => section === s);
+  }
+
+  // filterSpicy(isSpicy: boolean): Menu
+  filterSpicy(isSpicy) {
+    return this.filterMenuByProperty("spicy", spicy => spicy === isSpicy);
+  }
+  
 }
 
 module.exports = Menu;
