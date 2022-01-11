@@ -41,26 +41,39 @@ class Menu {
     return this.filterMenu(r => r.hasOwnProperty(propertyName) && satisfiesRequirements(r[propertyName]) );
   }
 
+  // returns a new Menu with only the food items that have a price less than or equal to a price *amount*
   // filterPriceLeq(amount: number): Menu
   filterPriceLeq(amount) {
     return this.filterMenuByProperty("price", price => price <= amount);
   }
 
+  // returns a new Menu with only the food items that have a price greater than or equal to a price *amount*
   // filterPriceGeq(amount: number): Menu
   filterPriceGeq(amount) {
     return this.filterMenuByProperty("price", price => price >= amount);
   }
 
+  // return a new Menu with only the food items under the section *s*
   // filterSection(s: String): Menu
   filterSection(s) {
     return this.filterMenuByProperty("section", section => section === s);
+  }
+
+  // return a new menu with only the food items that don't have the given *allergy* ingredient
+  // filterAllergen(allergy: String): Menu
+  filterAllergen(allergy) {
+    return this.filterMenuByProperty("allergens", allergens => !allergens.contains(allergy));
   }
 
   // filterSpicy(isSpicy: boolean): Menu
   filterSpicy(isSpicy) {
     return this.filterMenuByProperty("spicy", spicy => spicy === isSpicy);
   }
-  
+
+  // filterHasDescription(): Menu
+  filterHasDescription() {
+    return this.filterMenuByProperty("description", x => true);     // filter always returns true to only check if the description field exists
+  }
 }
 
 module.exports = Menu;
