@@ -15,6 +15,8 @@ The menu items are provided in the following JSON format. None of the properies 
       "description": String
     }, ...
   ]
+
+  : Food[]
 */
 
 class Menu {
@@ -22,6 +24,12 @@ class Menu {
 
   constructor(jsonData) {
     this.items = jsonData;
+  }
+
+  // addFood(food: Food): this
+  addFood(food) {
+    this.items.push(food);
+    return this;
   }
 
   // filterMenu(isValidFood: (food) => boolean): Menu

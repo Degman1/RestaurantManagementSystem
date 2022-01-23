@@ -56,7 +56,6 @@ class RestaurantManagementSystem {
     return this.isOpen;
   }
 
-  // adds a food to the menu
   /* A food is an object with the following properties (not necessery for the properties to be present)
     Food: {
     "name": String,
@@ -70,9 +69,15 @@ class RestaurantManagementSystem {
     "description": String
     }
   */
+  // importMenu(menuJson: Food[]): this
+  importMenu(menuJson) {
+    this.menu = new Menu(menu)
+  }
+
+  // adds a food to the menu
   // createFood(food: Food): this
-  createFood(food) {
-    this.menu.items.push(food)
+  addFood(food) {
+    this.menu.addFood(food);
     return this;
   }
 
