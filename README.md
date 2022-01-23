@@ -1,3 +1,5 @@
+*** STILL UNDER CONSTRUCTION ***
+
 # RestaurantManagementSystem
 
 A JavaScript program [run with NodeJS, tested with JEST, managed with npm] to simulate a restaurant management system using the state, observer, and fluent design patterns along with functional programming and streamlined error handling (Promises).
