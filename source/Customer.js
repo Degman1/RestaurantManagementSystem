@@ -3,11 +3,13 @@ const FiniteStateMachine = require('./FiniteStateMachine');
 const Logger = require('./Logger');
 
 class Customer extends Person {
+  size;
   tableID;
   balance;
 
-  constructor(lastName, email) {
+  constructor(lastName, email, size) {
     super(lastName, email);
+    this.size = size;
     this.tableID = undefined;
     this.balance = 0;
     this.state = new FiniteStateMachine()

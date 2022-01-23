@@ -8,6 +8,11 @@ class Host extends Employee {
     this.waitlist = [];
   }
 
+  // clear(): this
+  clear() {
+    this.waitlist = []
+  }
+
   // enqueueToWaitlist(c: Customer): this
   enqueueToWaitlist(c) {
     this.waitlist.push(c);
